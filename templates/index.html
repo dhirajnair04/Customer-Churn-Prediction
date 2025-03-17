@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Churn Prediction</title>
+</head>
+<body>
+    <h2>Customer Churn Prediction</h2>
+    <form id="churnForm" action="/predict" method="post">
+        <label for="tenure">Tenure (0-72 months):</label>
+        <input type="number" id="tenure" name="tenure" min="0" max="72" placeholder="e.g., 12" required><br>
+        
+        <label for="MonthlyCharges">Monthly Charges (18-120 USD):</label>
+        <input type="number" step="0.01" id="MonthlyCharges" name="MonthlyCharges" min="18" max="120" placeholder="e.g., 50.75" required><br>
+        
+        <label for="TotalCharges">Total Charges (0-9000 USD):</label>
+        <input type="number" step="0.01" id="TotalCharges" name="TotalCharges" min="0" max="9000" placeholder="e.g., 500" required><br>
+        
+        <label for="Contract">Contract:</label>
+        <select id="Contract" name="Contract">
+            <option value="Month-to-month">Month-to-month</option>
+            <option value="One year">One year</option>
+            <option value="Two year">Two year</option>
+        </select><br>
+        
+        <label for="InternetService">Internet Service:</label>
+        <select id="InternetService" name="InternetService">
+            <option value="DSL">DSL</option>
+            <option value="Fiber optic">Fiber optic</option>
+            <option value="No">No</option>
+        </select><br>
+        
+        <label for="PaymentMethod">Payment Method:</label>
+        <select id="PaymentMethod" name="PaymentMethod">
+            <option value="Electronic check">Electronic check</option>
+            <option value="Mailed check">Mailed check</option>
+            <option value="Bank transfer">Bank transfer</option>
+            <option value="Credit card">Credit card</option>
+        </select><br>
+        
+        <label for="SeniorCitizen">Senior Citizen (0 = No, 1 = Yes):</label>
+        <input type="number" id="SeniorCitizen" name="SeniorCitizen" min="0" max="1" placeholder="e.g., 0" required><br>
+        
+        <label for="OnlineSecurity">Online Security:</label>
+        <select id="OnlineSecurity" name="OnlineSecurity">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br>
+        
+        <label for="TechSupport">Tech Support:</label>
+        <select id="TechSupport" name="TechSupport">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br>
+        
+        <button type="button" onclick="predictChurn()">Predict</button>
+    </form>
+    
+    <p id="result"></p>
+    
+    <script>
+        function predictChurn() {
+            const formData = new FormData(document.getElementById("churnForm"));
+            let jsonObject = {};
+            formData.forEach((value, key) => { jsonObject[key] = value; });
+            
+            fetch("/predict", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(jsonObject)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").innerText = "Churn Prediction: " + (data.churn_prediction ? "Yes" : "No") + " (Probability: " + data.churn_probability.toFixed(2) + ")";
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>
