@@ -63,5 +63,5 @@ POST /predict
 ## 🫱🏼‍🫲🏼 Contributing
 Feel free to contribute by submitting issues or pull requests!
 
-## ✍🏼 Author
+## ✍🏼 Authors
 Dhiraj, Jeet, Palak, Taral
