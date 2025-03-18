@@ -1,6 +1,7 @@
 # 📊 Customer Churn Prediction App
 
-This is a FastAPI-based web application that predicts customer churn using a trained machine learning model.
+## 🔍 Overiew 
+This project predicts customer churn using machine learning. It takes in various customer details and provides a probability of churn. The model is deployed using FastAPI and hosted on an AWS EC2 instance.
 
 ## 🚀 Features
 - Web interface for input using `index.html`
