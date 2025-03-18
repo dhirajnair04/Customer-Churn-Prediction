@@ -34,7 +34,7 @@ docker build -t churn-app .
 docker run -p 8000:8000 churn-app
 ```
 
-### Deployment on AWS EC2 (Optional)
+### ☁️ Deployment on AWS EC2 (Optional)
 1. Launch an EC2 Instance
 2. Install Docker & Git
    ```
@@ -49,7 +49,7 @@ docker run -p 8000:8000 churn-app
    docker build -t churn-prediction .
    docker run -p 8000:8000 churn-prediction
    ```
-## API Endpoints
+## 🔗 API Endpoints
 Home Page (HTML Form for Input)
 ```
 GET /
@@ -60,8 +60,8 @@ Prediction API (Submit Form Data)
 POST /predict
 ```
 
-## Contributing
+## 🫱🏼‍🫲🏼 Contributing
 Feel free to contribute by submitting issues or pull requests!
 
-## Author
+## ✍🏼 Author
 Dhiraj, Jeet, Palak, Taral
